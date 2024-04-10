@@ -9,18 +9,17 @@ choco install minikube
 minikube start 
 
 ```
-## Step2: Create a Service
-```
-kubectl create -f service.yml
+## Step2: Create a Service and Deployment in yml file 
 
+## Step 3: Open minikube tunnel  
+Since the type is LoadBalancer so we need open the minikube tunnel
 ```
-## Step3: Create a Deployment
-```
-kubectl create -f deployment.yml
-
+minikube tunnel
 ```
 
-## Step 4: Expose deployment  
+## Step4: Apply defination file
 ```
-kubectl expose deployment nginx-deployment --type=LoadBalancer --port=8080
-``
+kubectl apply -f .\<yml-file-name>.yml 
+
+```
+
