@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bootcamp-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bootcamp-api
+  template:
+    metadata:
+      labels:
+        app: bootcamp-api
+    spec:
+      containers:
+      - name: bootcamp-api
+        image: rungmahangma/bootcamp-api:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bootcamp-api-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: bootcamp-api
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bootcamp-api-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 80
+  selector:
+    app: bootcamp-api
+
